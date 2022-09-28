@@ -1,22 +1,23 @@
 ## gulpテンプレート - 静的Webサイト用【ejs】
+<br>
+
 ## 1. 主な概要
----
 - 【ejs】htmlテンプレートエンジン
 - 【scss】cssの拡張
 - 【jQuery】javascriptのライブラリ
 - 【volta】node,npmのversion管理に使っています。
 <br>npmとnodeのバーションはpackage.jsonに記載があります。
 <br>
+
 ## 2. フォーマッターや、構文解析ツール、トランスパイル
----
 - 【eslint】jsのコードの解析
 - 【stylelint】cssのコードの解析
 - 【prettier】html,css,jsなどの各ファイルを整形
 - 【babel】jsのトランスパイル
 - 【rollup】jsファイルのバンドル
 <br>
+
 ## 3. 各ディレクトリ - ファイルの説明
----
 ### ```/.vscode/```
 vscodeの設定ファイルが入っています。<br>
 ### ```/dev/```
@@ -80,8 +81,6 @@ vscodeの設定ファイルが入っています。<br>
 <br>
 
 ## 4. 利用方法
----
-
 <span style="color:red;">※</span> 開発は、```/dev/```ディレクトリにて行います。`/`直下のディレクトリだと、gulpが動作しないので注意してください。
 <br>
 
@@ -113,7 +112,6 @@ npm run build
 <br>
 
 ### 開発環境用と、本番環境用の違い
-
 【開発環境用】
 + css,jsファイルのソースマップを出力して圧縮は行いません。
 
@@ -156,8 +154,6 @@ const compileJs = done => {
 <br>
 
 ## 5. vscodeで必要な拡張機能
----
-
 ```ESLint```
 + jsのコードをチェックして解析を行ってくれるツール
 
