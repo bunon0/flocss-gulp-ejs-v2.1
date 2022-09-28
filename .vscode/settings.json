@@ -8,6 +8,7 @@
 	},
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"prettier.ignorePath": "./dev/.prettierignore",
 
 	"[markdown]": {
 		"editor.formatOnSave": false

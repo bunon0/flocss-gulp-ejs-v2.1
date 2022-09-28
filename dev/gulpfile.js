@@ -42,6 +42,8 @@ const cleanCss = require("gulp-clean-css");
 const uglify = require("gulp-uglify");
 // gulp-babel - jsファイルのトランスパイル
 const gulpBabel = require("gulp-babel");
+// gulp-rollup - jsファイルのバンドル
+const rollup = require("gulp-rollup");
 
 /* ----------------------------
  * package - 画像関連
@@ -51,7 +53,7 @@ const imageMin = require("gulp-imagemin");
 // imagemin-pngquant - gulp-imageminのpng圧縮率が低いため追加
 const pngquant = require("imagemin-pngquant");
 // gulp-webp - webp画像の圧縮
-const webp = require('gulp-webp');
+const webp = require("gulp-webp");
 
 /* ----------------------------
  * package - その他
@@ -69,7 +71,6 @@ const browserSync = require("browser-sync");
 // path - nodeのpathを使えるようにする
 const path = require("path");
 
-
 /* ----------------------------
  * 各パス情報のソース
  * ---------------------------- */
@@ -85,15 +86,24 @@ const paths = {
   css: {
     src: "./assets/css/**/*.css",
     dist: "../dist/assets/css/",
+    copy: {
+      src: "./assets/css/libs/*.css",
+      dist: "../dist/assets/css/libs/",
+    },
   },
   scss: {
     src: "./assets/scss/**/*.scss",
     dist: "../dist/assets/css/",
-    include: [path.resolve(__dirname, "scss")]
+    include: [path.resolve(__dirname, "scss")],
   },
   js: {
     src: "./assets/js/**/*.js",
     dist: "../dist/assets/js/",
+    ignore: "!./assets/js/libs/**.js",
+    copy: {
+      src: "./assets/js/libs/**.js",
+      dist: "../dist/assets/js/libs/",
+    },
   },
   images: {
     src: "./assets/images/**/*",
@@ -101,8 +111,8 @@ const paths = {
   },
   clean: {
     all: "../dist/",
-    images: "../dist/assets/images/"
-  }
+    images: "../dist/assets/images/",
+  },
 };
 
 /* ----------------------------
@@ -120,15 +130,17 @@ const compileEjs = done => {
       })
     )
     .pipe(ejs())
-    .pipe(rename({ extname: '.html' }))
-    .pipe(htmlbeautify({
-      "indent_size": 2,
-      "indent_char": "\t",
-      "preserve_newlines": false,
-    }))
+    .pipe(rename({ extname: ".html" }))
+    .pipe(
+      htmlbeautify({
+        indent_size: 2,
+        indent_char: "\t",
+        preserve_newlines: false,
+      })
+    )
     .pipe(gulp.dest(paths.ejs.dist));
   done();
-}
+};
 
 /* ----------------------------
  * gulpタスク - scssのコンパイル
@@ -150,22 +162,54 @@ const compileSass = done => {
     .pipe(mergeMq())
     .pipe(mode.development(gulp.dest(paths.scss.dist, { sourcemaps: "./sourcemaps" })))
     .pipe(mode.production(cleanCss())) //本番環境圧縮なしの場合は、コメントアウト
-    .pipe(mode.production(gulp.dest(paths.scss.dist)))
+    .pipe(mode.production(gulp.dest(paths.scss.dist)));
   done();
 };
 
 /* ----------------------------
  * gulpタスク - jsのコンパイル
  * ---------------------------- */
+// const compileJs = done => {
+//   gulp
+//     .src(paths.js.src, { sourcemaps: true })
+//     .pipe(
+//       plumber({
+//         errorHandler: notify.onError({
+//           title: "JSコンパイルエラー",
+//           message: "Error: <%= error.message %>",
+//         }),
+//       })
+//     )
+//     .pipe(
+//       gulpBabel({
+//         presets: ["@babel/preset-env"],
+//       })
+//     )
+//     .pipe(mode.production(uglify())) //本番環境圧縮なしの場合は、コメントアウト
+//     .pipe(mode.development(gulp.dest(paths.js.dist, { sourcemaps: "./sourcemaps" })))
+//     .pipe(mode.production(gulp.dest(paths.js.dist)));
+//   done();
+// };
+
+/* ----------------------------
+ * gulpタスク - jsのコンパイル - rollup
+ * ---------------------------- */
 const compileJs = done => {
   gulp
-    .src(paths.js.src, { sourcemaps: true })
+    .src([paths.js.src, paths.js.ignore], { sourcemaps: true })
     .pipe(
       plumber({
         errorHandler: notify.onError({
           title: "JSコンパイルエラー",
           message: "Error: <%= error.message %>",
         }),
+      })
+    )
+    .pipe(
+      rollup({
+        input: "./assets/js/main.js",
+        format: "esm",
+        moduleName: "sample_module",
       })
     )
     .pipe(
@@ -238,9 +282,12 @@ const minImages = done => {
  * gulpタスク - ディレクトリのコピー
  * ---------------------------- */
 const copyCss = done => {
-  gulp
-    .src(paths.css.src)
-    .pipe(gulp.dest(paths.css.dist));
+  gulp.src(paths.css.src).pipe(gulp.dest(paths.css.dist));
+  done();
+};
+
+const copyJs = done => {
+  gulp.src(paths.js.copy.src).pipe(gulp.dest(paths.js.copy.dist));
   done();
 };
 
@@ -248,7 +295,7 @@ const copyCss = done => {
  * gulpタスク - distのディレクトリやファイルを削除
  * ---------------------------- */
 const cleanAll = done => {
-  del([paths.clean.all],{force: true,});
+  del([paths.clean.all], { force: true });
   done();
 };
 
@@ -271,7 +318,6 @@ const browserReload = done => {
   browserSync.reload();
   done();
 };
-
 
 /* ----------------------------
  * gulpタスク - ファイルの監視タスク
@@ -301,5 +347,5 @@ exports.browserInit = browserInit;
 
 // 一括のタスクコマンド
 exports.start = gulp.parallel(browserInit, watch);
-exports.dev = gulp.parallel(compileEjs, copyCss, compileSass, compileJs, minImages);
-exports.build = gulp.parallel(compileEjs, copyCss, compileSass, compileJs, minImages);
+exports.dev = gulp.parallel(compileEjs, copyCss, compileSass, copyJs, compileJs, minImages);
+exports.build = gulp.parallel(compileEjs, copyCss, compileSass, copyJs, compileJs, minImages);
