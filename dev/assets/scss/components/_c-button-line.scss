@@ -1,0 +1,49 @@
+@use "global/" as g;
+
+.c-button-line {
+  display: inline-block;
+  min-width: g.rem(240);
+  background-color: var(--c-sub-rgb-opacity60);
+  color: var(--c-main);
+  padding: g.rem(18) g.rem(48) g.rem(18) g.rem(48);
+  font-size: g.rem(16);
+  font-weight: var(--f-weight-bold);
+  letter-spacing: g.l-spacing(4);
+  position: relative;
+  transition: all 0.3s;
+  text-align: center;
+  line-height: 1;
+
+  @include g.mq("md") {
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.c-button-line:hover,
+.c-button-line:focus {
+  .c-button-line__text {
+    transform: translateX(-1em);
+  }
+}
+
+.c-button-line__text {
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+  transition: all 0.3s;
+}
+
+.c-button-line__line {
+  display: inline-block;
+  width: g.rem(40);
+  height: 2px;
+  background-color: var(--c-main);
+  transition: height 0.3s;
+
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%);
+}

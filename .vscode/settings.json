@@ -1,0 +1,34 @@
+{
+	"stylelint.validate": ["css", "scss"],
+	"scss.validate": false,
+	"css.validate": false,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true,
+		"source.fixAll.stylelint": true
+	},
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+
+	"[markdown]": {
+		"editor.formatOnSave": false
+	},
+
+	"emmet.includeLanguages": {
+		"ejs": "html"
+	},
+
+	"eslint.workingDirectories": [{ "mode": "auto" }],
+
+	"cSpell.ignorePaths": [
+		".vscode/",
+		"dev/**/package.json",
+		"dev/**/package-lock.json",
+		"dev/**/yarn.lock",
+		"dev/**/node_modules/",
+		"dev/**/webpack.config.js",
+		"dev/**/gulpfile.js",
+		"dev/assets/js/libs/",
+		"dev/assets/css/libs/",
+		"dev/assets/scss/libs/"
+	]
+}

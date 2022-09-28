@@ -1,0 +1,11 @@
+node_modules
+package.json
+package-lock.json
+yarn.lock
+eslintrc.js
+gulpfile.js
+prettierrc.js
+dist
+dev/assets/css/libs/*.css
+assets/js/libs/*.js
+**.md

@@ -1,0 +1,12 @@
+@use "global/" as g;
+
+.l-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 g.rem(g.$padding-sp);
+
+  @include g.mq("md") {
+    max-width: g.calc-rem-container(1040, g.$padding-pc);
+    padding: 0 g.rem(g.$padding-pc);
+  }
+}

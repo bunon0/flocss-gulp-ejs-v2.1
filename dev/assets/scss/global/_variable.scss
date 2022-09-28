@@ -1,0 +1,27 @@
+// ブレイクポイント
+$xs: 375px; // spサイズ
+$sm: 576px;
+$md: 768px; // tabサイズ
+$lg: 992px;
+$xl: 1040px; // pcサイズ
+$xxl: 1400px;
+$breakpoints: (
+  "xs": "(min-width: #{$xs})",
+  "sm": "(min-width: #{$sm})",
+  "md": "(min-width: #{$md})",
+  "lg": "(min-width: #{$lg})",
+  "xl": "(min-width: #{$xl})",
+  "xxl": "(min-width: #{$xxl})",
+);
+
+// レイアウト
+$padding-sp: 28;
+$padding-pc: 48;
+
+// z-index
+$layer: (
+  "header": 1000,
+  "modal-nav": 990,
+  "button-scroll": 980,
+  "sidebar": 970,
+);

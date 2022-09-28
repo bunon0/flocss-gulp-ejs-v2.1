@@ -1,0 +1,5 @@
+@use "global/" as g;
+
+.p-test {
+  font-size: g.rem(30);
+}

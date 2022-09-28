@@ -1,0 +1,42 @@
+@use "sass:math";
+@use "./variable" as v;
+
+// fontsizeをremに変換
+@function rem($pixelSize, $baseFontSize: 16) {
+  @return math.div($pixelSize, $baseFontSize) * 1rem;
+}
+
+// window幅に対してfont-sizeをvwに変換
+@function vw($pxFontSize, $windowWidth) {
+  @return math.div($pxFontSize, $windowWidth) * 100vw;
+}
+
+// 数値の単位を除き数値のみを取り出す
+@function strip-unit($number) {
+  @if type-of($number) != number {
+    @warn "#{ $number } is not a number.";
+    @return $number;
+  }
+
+  @return math.div($number, ($number * 0 + 1));
+}
+
+// z-indexを$layerから取り出す
+@function z-index($z-index) {
+  @return map-get(v.$layer, $z-index);
+}
+
+// line-heightの計算
+@function l-height($height, $pixel) {
+  @return math.div($height, $pixel);
+}
+
+// letter-spacing計算
+@function l-spacing($spacing) {
+  @return math.div($spacing, 100) * 1em;
+}
+
+// border-boxで - containerの余白を含む計算(rem)
+@function calc-rem-container($container-width, $space) {
+  @return calc(rem($container-width) + (rem($space) * 2));
+}

@@ -1,0 +1,6 @@
+@use "global";
+@use "base";
+@forward "layouts/**/*.scss";
+@forward "components/**/*.scss";
+@forward "project/**/*.scss";
+@forward "utility/**/*.scss";

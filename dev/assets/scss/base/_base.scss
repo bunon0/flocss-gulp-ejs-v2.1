@@ -1,0 +1,110 @@
+@use "global/" as g;
+
+/* =====================
+ * リセットCSS以外のデフォルトスタイルを調整
+===================== */
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+a {
+  display: inline-block;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+
+  @include g.mq("md") {
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+    }
+  }
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  @include g.mq("md") {
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+    }
+  }
+}
+
+input[type="text"],
+textarea {
+  appearance: none;
+}
+
+/* =====================
+ * Baseスタイル
+===================== */
+:root,
+:root[theme="Default"] {
+  --f-family-main: "游ゴシック体", "YuGothic", "Yu Gothic", "メイリオ", "Meiryo",
+    "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", sans-serif;
+  --f-family-sub: "oswald", sans-serif;
+  --f-font-size: 16px;
+  --f-line-height: 1.6;
+  --f-weight-regular: 400;
+  --f-weight-medium: 500;
+  --f-weight-semibold: 600;
+  --f-weight-bold: 700;
+  --f-weight-black: 900;
+  --c-main: #ffffff;
+  --c-sub: #272727;
+  --c-sub-rgb-opacity25: rgba(39, 39, 39, 0.25);
+  --c-sub-rgb-opacity40: rgba(39, 39, 39, 0.4);
+  --c-sub-rgb-opacity60: rgba(39, 39, 39, 0.6);
+  --c-red: #ff0303;
+  --c-accent: #cccccc;
+  --c-accent-opacity-40: rgba(202, 202, 202, 0.4);
+  --c-gray: #8c8c8c;
+  --c-green: #08aa9f;
+  --c-twitter: #000000;
+  --c-github: #1a1414;
+}
+
+html {
+  font-size: 16px;
+  // リキッドレイアウト
+
+  // 768px-12px 1040px-16px 最小値12px 最大値16px の範囲で可変する
+  @include g.mq("md") {
+    font-size: clamp(
+      12px,
+      calc(
+        12px + (16 - 12) / (g.strip-unit(g.$xl) - g.strip-unit(g.$md)) * (100vw - g.$md)
+      ),
+      16px
+    );
+  }
+
+  /* Fix Safari bug with viewport units in calc() */
+  min-height: 0;
+}
+
+body {
+  font-family: var(--f-family-main);
+  font-size: var(--f-font-size);
+  font-weight: var(--f-weight-medium);
+  line-height: var(--f-line-height);
+  background-color: var(--c-main);
+  color: var(--c-sub);
+  word-break: break-all;
+}
