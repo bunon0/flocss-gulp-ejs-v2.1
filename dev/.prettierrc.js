@@ -19,7 +19,7 @@ module.exports = {
       files: ["gulpfile.js"],
       options: {
         tabWidth: 2,
-        printWidth: "",
+        printWidth: 150,
       },
     },
   ],
