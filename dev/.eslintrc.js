@@ -14,4 +14,7 @@ module.exports = {
     "no-unused-vars": ["warn"], //varを許可しない
     "no-var": ["error"], //使われていない変数にエラーを出す
   },
+  parserOptions: {
+    sourceType: "module",
+  },
 };
