@@ -4,7 +4,6 @@
  * リセットCSS以外のデフォルトスタイルを調整
 ===================== */
 img {
-  max-width: 100%;
   height: auto;
   vertical-align: top;
 }
@@ -23,34 +22,6 @@ a {
   }
 }
 
-ul,
-li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-button {
-  background: none;
-  border: none;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-
-  @include g.mq("md") {
-    &:hover,
-    &:focus {
-      opacity: 0.7;
-    }
-  }
-}
-
-input[type="text"],
-textarea {
-  appearance: none;
-}
-
 /* =====================
  * Baseスタイル
 ===================== */
@@ -66,37 +37,52 @@ textarea {
   --f-weight-semibold: 600;
   --f-weight-bold: 700;
   --f-weight-black: 900;
-  --c-main: #ffffff;
+  --c-main: #fff;
   --c-sub: #272727;
-  --c-sub-rgb-opacity25: rgba(39, 39, 39, 0.25);
-  --c-sub-rgb-opacity40: rgba(39, 39, 39, 0.4);
-  --c-sub-rgb-opacity60: rgba(39, 39, 39, 0.6);
+  --c-sub-rgb-opacity25: rgb(39 39 39 / 25%);
+  --c-sub-rgb-opacity40: rgb(39 39 39 / 40%);
+  --c-sub-rgb-opacity60: rgb(39 39 39 / 60%);
   --c-red: #ff0303;
-  --c-accent: #cccccc;
-  --c-accent-opacity-40: rgba(202, 202, 202, 0.4);
+  --c-accent: #ccc;
+  --c-accent-opacity-40: rgb(202 202 202 / 40%);
   --c-gray: #8c8c8c;
   --c-green: #08aa9f;
-  --c-twitter: #000000;
+  --c-twitter: #000;
   --c-github: #1a1414;
 }
 
 html {
-  font-size: 16px;
-  // リキッドレイアウト
+  /* ----------------------------
+  * リキッドレイアウト rootのfont-sizeを可変にして、単位をremで指定することでレイアウトを可変にする
+    // 計算式参考サイト：https://lpeg.info/html/css_calc_font.html
+    // font-size: calc([最小値px] + ([最大値] - [最小値]) * ((100vw - [最小画面幅px]) / ([最大画面幅] - [最小画面幅])));
+    // clampと併用して上限下限を設定すること。しないと無限に変化し続ける
+  * ---------------------------- */
 
-  // 768px-12px 1040px-16px 最小値12px 最大値16px の範囲で可変する
-  @include g.mq("md") {
-    font-size: clamp(
-      12px,
-      calc(
-        12px + (16 - 12) / (g.strip-unit(g.$xl) - g.strip-unit(g.$md)) * (100vw - g.$md)
-      ),
-      16px
-    );
+  // 0 ~ 375px
+  @media (max-width: 375px) {
+    font-size: clamp(12px, g.vw(16, 375), 16px);
   }
 
-  /* Fix Safari bug with viewport units in calc() */
-  min-height: 0;
+  // 375px ~ $md(768px)
+  @include g.mq("xs") {
+    font-size: 16px;
+  }
+
+  // $md(768px) ~ $container
+  @include g.mq("md") {
+    // prettier-ignore
+    font-size: clamp(
+    12px,
+    calc(12px + (16 - 12) * ((100vw - g.$md) / (g.strip-unit(g.$container) - g.strip-unit(g.$md)))),
+    16px
+  );
+  }
+
+  // container ~ max-screen
+  @media (min-width: g.$container) {
+    font-size: 16px;
+  }
 }
 
 body {
