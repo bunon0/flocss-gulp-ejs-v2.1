@@ -9,15 +9,22 @@
   box-sizing: border-box;
 }
 
+/* list Remove default style */
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
 /* Remove default margin */
 body,
 h1,
 h2,
 h3,
 h4,
-h5,
-h6,
 p,
+ul,
+ol,
 figure,
 blockquote,
 dl,
@@ -25,14 +32,8 @@ dd {
   margin: 0;
 }
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role="list"],
-ol[role="list"] {
-  list-style: none;
-}
-
 /* Set core root defaults */
-html:focus-within {
+html {
   scroll-behavior: smooth;
 }
 
@@ -49,32 +50,47 @@ a:not([class]) {
 }
 
 /* Make images easier to work with */
-img,
-picture {
+img {
   max-width: 100%;
   display: block;
+  width: 100%;
 }
 
-/* Inherit fonts for inputs and buttons */
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* フォームリセット */
 input,
 button,
 textarea,
 select {
   font: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  outline: none;
 }
 
-/* Remove all animations and transitions for people that prefer not to see them */
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-    scroll-behavior: auto;
-  }
+/* stylelint-disable */
+textarea {
+  resize: vertical;
+}
+/* stylelint-enable */
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+input[type="checkbox"],
+input[type="radio"] {
+  display: none;
+}
+
+input[type="submit"],
+input[type="button"],
+label,
+button,
+select {
+  cursor: pointer;
 }
