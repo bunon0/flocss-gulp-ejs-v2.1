@@ -1,8 +1,7 @@
-@use "global/" as g;
-
+@use "global/" as *;
 .u-space-contact {
-  margin-top: g.rem(120);
-  @include g.mq("md") {
-    margin-top: g.rem(160);
+  margin-top: rem(120);
+  @include mq("md") {
+    margin-top: rem(160);
   }
 }
