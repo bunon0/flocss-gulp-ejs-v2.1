@@ -1,28 +1,6 @@
 @use "global/" as g;
 
 /* =====================
- * リセットCSS以外のデフォルトスタイルを調整
-===================== */
-img {
-  height: auto;
-  vertical-align: top;
-}
-
-a {
-  display: inline-block;
-  color: inherit;
-  cursor: pointer;
-  text-decoration: none;
-
-  @include g.mq("md") {
-    &:hover,
-    &:focus {
-      opacity: 0.7;
-    }
-  }
-}
-
-/* =====================
  * Baseスタイル
 ===================== */
 :root,
@@ -92,5 +70,25 @@ body {
   line-height: var(--f-line-height);
   background-color: var(--c-main);
   color: var(--c-sub);
+  overflow-wrap: break-word;
   word-break: break-all;
+}
+
+img {
+  height: auto;
+  vertical-align: top;
+}
+
+a {
+  display: inline-block;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+
+  @include g.mq("md") {
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+    }
+  }
 }

@@ -6,3 +6,20 @@
     @content;
   }
 }
+
+// lineHeightの上下の余白を消す
+@mixin lineHeight($line-height) {
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+  }
+  &::before {
+    margin-top: calc((1 - #{$line-height}) * 0.5em); //文字上の余白を消す
+  }
+  &::after {
+    margin-bottom: calc((1 - #{$line-height}) * 0.5em); //文字下の余白を消す
+  }
+}

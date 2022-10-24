@@ -16,6 +16,8 @@ const mode = require("gulp-mode")({
 const ejs = require("gulp-ejs");
 // gulp-thml-beautify - コンパイル後のhtmlを整形する
 const htmlbeautify = require("gulp-html-beautify");
+// htmlmin ejsファイルのコメントを削除する
+const htmlmin = require("gulp-htmlmin");
 
 /* ----------------------------
  * package - CSS関連
@@ -70,6 +72,7 @@ const rename = require("gulp-rename");
 const browserSync = require("browser-sync");
 // path - nodeのpathを使えるようにする
 const path = require("path");
+const fs = require("fs");
 
 /* ----------------------------
  * 各パス情報のソース
@@ -119,6 +122,7 @@ const paths = {
  * gulpタスク - EJSのコンパイル
  * ---------------------------- */
 const compileEjs = done => {
+  const json = JSON.parse(fs.readFileSync("./ejs/data/page-data.json", "utf-8"));
   gulp
     .src([paths.ejs.src, paths.ejs.ignore])
     .pipe(
@@ -129,8 +133,14 @@ const compileEjs = done => {
         }),
       })
     )
-    .pipe(ejs())
+    .pipe(ejs({ jsonData: json })) //jsonデータの受け渡し
     .pipe(rename({ extname: ".html" }))
+    .pipe(
+      htmlmin({
+        collapseWhitespace: true, // 余白を除去する
+        removeComments: true, // HTMLコメントを除去する
+      })
+    )
     .pipe(
       htmlbeautify({
         indent_size: 2,
