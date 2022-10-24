@@ -1,4 +1,4 @@
-@use "global/" as g;
+@use "global/" as *;
 
 /* =====================
  * Baseスタイル
@@ -39,26 +39,26 @@ html {
 
   // 0 ~ 375px
   @media (max-width: 375px) {
-    font-size: clamp(12px, g.vw(16, 375), 16px);
+    font-size: clamp(12px, vw(16, 375), 16px);
   }
 
   // 375px ~ $md(768px)
-  @include g.mq("xs") {
+  @include mq("xs") {
     font-size: 16px;
   }
 
   // $md(768px) ~ $container
-  @include g.mq("md") {
+  @include mq("md") {
     // prettier-ignore
     font-size: clamp(
     12px,
-    calc(12px + (16 - 12) * ((100vw - g.$md) / (g.strip-unit(g.$container) - g.strip-unit(g.$md)))),
+    calc(12px + (16 - 12) * ((100vw - $md) / (strip-unit($container) - strip-unit($md)))),
     16px
   );
   }
 
   // container ~ max-screen
-  @media (min-width: g.$container) {
+  @media (min-width: $container) {
     font-size: 16px;
   }
 }
@@ -85,7 +85,7 @@ a {
   cursor: pointer;
   text-decoration: none;
 
-  @include g.mq("md") {
+  @include mq("md") {
     &:hover,
     &:focus {
       opacity: 0.7;

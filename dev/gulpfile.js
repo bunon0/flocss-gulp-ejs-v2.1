@@ -22,8 +22,8 @@ const htmlmin = require("gulp-htmlmin");
 /* ----------------------------
  * package - CSS関連
  * ---------------------------- */
-// gulp-sass - gulp-sassでrequire("sass")でdart-sassに切り替え
-const sass = require("gulp-sass")(require("sass"));
+// gulp-dart-sass
+const sass = require("gulp-dart-sass");
 // gulp-sass-glob-use-forward - dartsassで、一括読み込みを機能させる
 const sassGlob = require("gulp-sass-glob-use-forward");
 // gulp-postcss - postcssのパッケージを利用出切るようにする
@@ -167,7 +167,11 @@ const compileSass = done => {
       })
     )
     .pipe(sassGlob())
-    .pipe(sass(paths.scss.include))
+    .pipe(
+      sass.sync({
+        includePaths: ["node_modules", "assets/scss"],
+      })
+    )
     .pipe(postcss([autoprefixer(), cssSorter()]))
     .pipe(mergeMq())
     .pipe(mode.development(gulp.dest(paths.scss.dist, { sourcemaps: "./sourcemaps" })))
