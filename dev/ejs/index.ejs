@@ -1,36 +1,15 @@
+<% let pageId = "home" ;%>
+
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-    <meta property="og:locale" content="" />
-    <meta property="og:title" content="" />
-    <meta property="og:type" content="website" />
-    <!-- 横1200px×縦630px -->
-    <meta property="og:image" content="" />
-    <!-- 80～90文字程度 -->
-    <meta property="og:description" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:site_name" content="" />
-    <meta name="twitter:card" content="カードの種類" />
-    <meta name="twitter:site" content="@ユーザー名" />
-    <meta property="fb:app_id" content="App-ID" />
-    <meta name="robots" content="noindex,nofollow" />
-    <title>インデックスページ</title>
-    <link rel="shortcut icon" href="" type="image/x-icon" />
-    <!-- 180×180 -->
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <script src="./assets/js/main.js" defer></script>
-  </head>
+  <%- include("component/_head.ejs",{pageId: pageId})%>
   <body>
-    <div class="l-container">
-      <%- include("layout/_header.ejs") %>
-      <p class="p-test"><%= 'Gulp EJS Compile'%></p>
-      <%- include("layout/_footer.ejs") %> <% include %>
-      <p class="c-test">fontSize=1rem</p>
-    </div>
+    <%- include("component/_header.ejs", {pageId: pageId})%>
+    <main>
+      <div class="l-container">
+        <h2>トップページ</h2>
+      </div>
+    </main>
+    <%- include("component/_footer.ejs") %>
   </body>
 </html>

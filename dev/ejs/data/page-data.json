@@ -1,0 +1,16 @@
+{
+  "siteInfo": {
+    "name": "サイト名",
+    "siteUrl": "サイトのドメイン"
+  },
+  "pages": {
+    "home": {
+      "name": "ホーム",
+      "description": "ページの説明"
+    },
+    "about": {
+      "name": "アバウト",
+      "description": "アバウトページの説明"
+    }
+  }
+}

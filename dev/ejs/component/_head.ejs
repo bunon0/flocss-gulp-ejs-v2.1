@@ -1,0 +1,30 @@
+<!-- prettier-ignore -->
+<% let title = (pageId === 'home') ? jsonData.siteInfo.name : jsonData.pages[pageId].name + " | " + jsonData.siteInfo.name%>
+<% let description =jsonData.pages[pageId].description %>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:locale" content="" />
+  <meta property="og:title" content="" />
+  <meta property="og:type" content="website" />
+  <!-- 横1200px×縦630px -->
+  <meta property="og:image" content="" />
+  <!-- 80～90文字程度 -->
+  <meta property="og:description" content="" />
+  <meta property="og:url" content="" />
+  <meta property="og:site_name" content="" />
+  <meta name="twitter:card" content="カードの種類" />
+  <meta name="twitter:site" content="@ユーザー名" />
+  <meta property="fb:app_id" content="App-ID" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title><%= title %></title>
+  <meta name="description" content="<%= description %>" />
+  <link rel="shortcut icon" href="" type="image/x-icon" />
+  <!-- 180×180 -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+
+  <script src="./assets/js/main.js" defer></script>
+</head>
