@@ -8,7 +8,7 @@
 }
 
 // lineHeightの上下の余白を消す
-@mixin lineHeight($line-height) {
+@mixin lineHeightFilter($line-height) {
   &::before,
   &::after {
     content: "";
