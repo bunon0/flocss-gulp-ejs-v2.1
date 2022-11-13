@@ -1,6 +1,7 @@
-console.log("lobs-test.jsです");
+console.log('lobs-test.jsです');
 
-let a = "a";
-var b = "a";
+let a = 'a';
+var b = 'a';
+
 
 
