@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["eslint:recommended", "prettier"], //拡張 - ルールはeslint標準のルール prettierで整形するために最後にprettierを追加
+  extends: ['eslint:recommended', 'prettier'], //拡張 - ルールはeslint標準のルール prettierで整形するために最後にprettierを追加
   plugins: [],
   env: {
     browser: true, //windowやalertなどのグローバル変数が定義される
@@ -9,12 +9,12 @@ module.exports = {
   },
   rules: {
     //eslintのルールを追加する
-    semi: ["error", "always"], //末尾セミコロン
-    quotes: ["error", "double"], //文字列のクォート
-    "no-unused-vars": ["warn"], //varを許可しない
-    "no-var": ["error"], //使われていない変数にエラーを出す
+    semi: ['error', 'always'], //末尾セミコロン
+    quotes: ['error', 'single'], //文字列のクォート
+    'no-unused-vars': ['warn'], //varを許可しない
+    'no-var': ['error'], //使われていない変数にエラーを出す
   },
   parserOptions: {
-    sourceType: "module",
+    sourceType: 'module',
   },
 };
