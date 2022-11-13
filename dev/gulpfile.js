@@ -282,7 +282,7 @@ const minImages = done => {
         }),
       ])
     )
-    .pipe(webp())
+    // .pipe(webp())
     .pipe(gulp.dest(paths.images.dist));
   done();
 };
