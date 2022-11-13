@@ -1,7 +1,0 @@
-@use "global/" as *;
-
-.u-pc-hidden {
-  @include mq("md") {
-    display: none;
-  }
-}

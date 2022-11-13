@@ -1,0 +1,15 @@
+@use "global/" as *;
+
+.u-xs-hidden {
+  display: none;
+  @include mq('md'){
+    display:initial
+  }
+}
+
+.u-md-hidden {
+  display: initial;
+  @include mq("md") {
+    display: none;
+  }
+}

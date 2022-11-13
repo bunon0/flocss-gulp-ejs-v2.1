@@ -1,4 +1,4 @@
-@use "./variable" as v;
+@use './variable' as v;
 
 // メディアクエリ
 @mixin mq($breakpoint: md) {
@@ -11,7 +11,7 @@
 @mixin lineHeightFilter($line-height) {
   &::before,
   &::after {
-    content: "";
+    content: '';
     display: block;
     width: 0;
     height: 0;
