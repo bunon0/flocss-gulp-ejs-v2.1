@@ -1,4 +1,5 @@
 <!-- prettier-ignore -->
+<% let srcPath = (pageId === 'home') ? "." : ".."%>
 <% let title = (pageId === 'home') ? jsonData.siteInfo.name : jsonData.pages[pageId].name + " | " + jsonData.siteInfo.name%>
 <% let description =jsonData.pages[pageId].description %>
 
@@ -6,7 +7,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta property="og:locale" content="" />
+  <meta property="og:locale" content="ja_JP" />
   <meta property="og:title" content="" />
   <meta property="og:type" content="website" />
   <!-- 横1200px×縦630px -->
@@ -21,10 +22,10 @@
   <meta name="robots" content="noindex,nofollow" />
   <title><%= title %></title>
   <meta name="description" content="<%= description %>" />
-  <link rel="shortcut icon" href="" type="image/x-icon" />
+  <link rel="shortcut icon" href="<%= srcPath %>" type="image/x-icon" />
   <!-- 180×180 -->
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="apple-touch-icon" href="<%= srcPath %>/apple-touch-icon.png" />
 
-  <script src="./assets/js/main.js" defer></script>
+  <link rel="stylesheet" href="<%= srcPath %>/assets/css/style.css" />
+  <script src="<%= srcPath %>/assets/js/main.js" defer></script>
 </head>

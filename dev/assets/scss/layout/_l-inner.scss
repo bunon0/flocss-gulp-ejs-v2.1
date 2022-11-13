@@ -1,13 +1,13 @@
-@use "global/" as *;
+@use 'global/' as *;
 
-.l-container {
+.l-inner {
   width: 100%;
   margin: 0 auto;
   padding: 0 rem(strip-unit($padding-sp));
   background-color: #ddd;
 
-  @include mq("md") {
-    max-width: calc($container + $padding-pc * 2);
+  @include mq('md') {
+    max-width: calc($inner + $padding-pc * 2);
     padding: 0 rem(strip-unit($padding-pc));
   }
 }

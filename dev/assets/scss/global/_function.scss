@@ -1,5 +1,5 @@
-@use "sass:math";
-@use "./variable" as v;
+@use 'sass:math';
+@use './variable' as v;
 
 // fontsizeをremに変換
 @function rem($pixelSize, $baseFontSize: 16) {
@@ -37,6 +37,6 @@
 }
 
 // border-boxで - containerの余白を含む計算(rem)
-@function calc-rem-container($container-width, $space) {
-  @return calc(rem($container-width) + (rem($space) * 2));
+@function calc-rem-container($inner-width, $space) {
+  @return calc(rem($inner-width) + (rem($space) * 2));
 }
