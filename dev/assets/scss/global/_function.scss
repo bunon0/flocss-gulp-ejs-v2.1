@@ -1,5 +1,5 @@
-@use "sass:math";
-@use "./variable" as v;
+@use 'sass:math';
+@use './variable' as v;
 
 // fontsizeをremに変換
 @function rem($pixelSize, $baseFontSize: 16) {
