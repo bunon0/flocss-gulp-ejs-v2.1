@@ -1,5 +1,5 @@
-@use 'sass:math';
-@use './variable' as v;
+@use "sass:math";
+@use "./variable" as v;
 
 // fontsizeをremに変換
 @function rem($pixelSize, $baseFontSize: 16) {
@@ -33,7 +33,7 @@
 
 // letter-spacing計算
 @function l-spacing($spacing) {
-  @return math.div($spacing, 100) * 1em;
+  @return math.div($spacing, 1000) * 1em;
 }
 
 // border-boxで - containerの余白を含む計算(rem)

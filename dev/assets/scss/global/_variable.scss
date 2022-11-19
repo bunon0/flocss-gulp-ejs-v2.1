@@ -5,10 +5,10 @@ $padding-pc: 30px;
 
 // z-index
 $layer: (
-  'header': 1000,
-  'modal-nav': 990,
-  'button-scroll': 980,
-  'sidebar': 970,
+  "header": 1000,
+  "modal-nav": 990,
+  "button-scroll": 980,
+  "sidebar": 970,
 );
 
 // ブレイクポイント
@@ -19,10 +19,10 @@ $lg: 992px;
 $xl: 1200px; // pcサイズ
 $xxl: 1400px;
 $breakpoints: (
-  'xs': '(min-width: #{$xs})',
-  'sm': '(min-width: #{$sm})',
-  'md': '(min-width: #{$md})',
-  'lg': '(min-width: #{$lg})',
-  'xl': '(min-width: #{$xl})',
-  'xxl': '(min-width: #{$xxl})',
+  "xs": "(min-width: #{$xs})",
+  "sm": "(min-width: #{$sm})",
+  "md": "(min-width: #{$md})",
+  "lg": "(min-width: #{$lg})",
+  "xl": "(min-width: #{$xl})",
+  "xxl": "(min-width: #{$xxl})",
 );
