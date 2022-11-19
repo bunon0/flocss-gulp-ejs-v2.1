@@ -1,13 +1,13 @@
-@use 'global/' as *;
+@use "global/" as *;
 
 /* =====================
  * Baseスタイル
 ===================== */
 :root,
-:root[theme='Default'] {
-  --f-family-main: '游ゴシック体', 'YuGothic', 'Yu Gothic', 'メイリオ', 'Meiryo',
-    'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', sans-serif;
-  --f-family-sub: 'oswald', sans-serif;
+:root[theme="Default"] {
+  --f-family-main: "游ゴシック体", "YuGothic", "Yu Gothic", "メイリオ", "Meiryo",
+    "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", sans-serif;
+  --f-family-sub: "oswald", sans-serif;
   --f-font-size: 16px;
   --f-line-height: 1.6;
   --f-weight-regular: 400;
@@ -43,12 +43,12 @@ html {
   }
 
   // 375px ~ $md(768px)
-  @include mq('xs') {
+  @include mq("xs") {
     font-size: 16px;
   }
 
   // $md(768px) ~ $inner
-  @include mq('md') {
+  @include mq("md") {
     // prettier-ignore
     font-size: clamp(
     12px,
@@ -85,7 +85,7 @@ a {
   cursor: pointer;
   text-decoration: none;
 
-  @include mq('md') {
+  @include mq("md") {
     &:hover,
     &:focus {
       opacity: 0.7;

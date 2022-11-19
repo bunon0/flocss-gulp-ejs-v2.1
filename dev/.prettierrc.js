@@ -1,22 +1,22 @@
 module.exports = {
   printWidth: 90,
-  trailingComma: "es5",
+  trailingComma: 'es5',
   tabWidth: 2,
   semi: true,
   singleQuote: true,
   jsxSingleQuote: true,
-  endOfLine: "lf",
+  endOfLine: 'lf',
   bracketSpacing: true,
   bracketSameLine: true,
-  arrowParens: "avoid",
+  arrowParens: 'avoid',
 
   overrides: [
     {
-      files: ["*.html"],
-      options: {
-        tabWidth: 2,
-      },
-      files: ["gulpfile.js"],
+      files: ['**/*.css', '**/*.scss', '**/*.html'],
+      options: { singleQuote: false },
+    },
+    {
+      files: ['gulpfile.js'],
       options: {
         tabWidth: 2,
         printWidth: 150,

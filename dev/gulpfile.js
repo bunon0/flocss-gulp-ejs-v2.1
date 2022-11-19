@@ -2,119 +2,120 @@
  * gulp関連
  * ---------------------------- */
 // gulp - 本体
-const gulp = require("gulp");
+const gulp = require('gulp');
 // gulp-mode - 任意の名前でgulpのタスクを分けられる
-const mode = require("gulp-mode")({
-  modes: ["production", "development"], //分けたいモードの名前
-  default: "development", //デフォルトのモード
+const mode = require('gulp-mode')({
+  modes: ['production', 'development'], //分けたいモードの名前
+  default: 'development', //デフォルトのモード
 });
 
 /* ----------------------------
  * package - EJS関連
  * ---------------------------- */
 // gulp-ejs - ejsのコンパイル
-const ejs = require("gulp-ejs");
+const ejs = require('gulp-ejs');
 // gulp-thml-beautify - コンパイル後のhtmlを整形する
-const htmlbeautify = require("gulp-html-beautify");
+const htmlbeautify = require('gulp-html-beautify');
 // htmlmin ejsファイルのコメントを削除する
-const htmlmin = require("gulp-htmlmin");
+const htmlmin = require('gulp-htmlmin');
 
 /* ----------------------------
  * package - CSS関連
  * ---------------------------- */
 // gulp-sass
-const sass = require("gulp-sass")(require("sass"));
+const sass = require('gulp-sass')(require('sass'));
 // gulp-sass-glob-use-forward - dartsassで、一括読み込みを機能させる
-const sassGlob = require("gulp-sass-glob-use-forward");
+const sassGlob = require('gulp-sass-glob-use-forward');
 // gulp-postcss - postcssのパッケージを利用出切るようにする
-const postcss = require("gulp-postcss");
+const postcss = require('gulp-postcss');
 // autoprefixer - scssコンパイル時に自動でベンダープレフィックスの付与する
-const autoprefixer = require("autoprefixer");
+const autoprefixer = require('autoprefixer');
 // css-declaration-sorter - scssコンパイル時にcssを並び替える・ソートする
-const cssSorter = require("css-declaration-sorter");
-// css-mqpacker - scssコンパイル時に重複しているメディアクエリをひとつにまとめる
-const mqpacker = require("css-mqpacker");
+const cssSorter = require('css-declaration-sorter');
+//  gulp-group-css-media-queries - scssコンパイル時に重複しているメディアクエリをひとつにまとめる
+const groupmq = require('gulp-group-css-media-queries');
 // gulp-clean-css - コンパイル時にcssを圧縮する
-const cleanCss = require("gulp-clean-css");
+const cleanCss = require('gulp-clean-css');
 
 /* ----------------------------
  * package - JS関連
  * ---------------------------- */
 // gulp-uglify - jsファイルの圧縮
-const uglify = require("gulp-uglify");
+const uglify = require('gulp-uglify');
 // gulp-babel - jsファイルのトランスパイル
-const gulpBabel = require("gulp-babel");
+const gulpBabel = require('gulp-babel');
 // gulp-rollup - jsファイルのバンドル
-const rollup = require("gulp-rollup");
+const rollup = require('gulp-rollup');
 
 /* ----------------------------
  * package - 画像関連
  * ---------------------------- */
 // gulp-imagemin - PNG, JPEG, GIF, SVGの画像ファイルの圧縮
-const imageMin = require("gulp-imagemin");
+const imageMin = require('gulp-imagemin');
 // imagemin-pngquant - gulp-imageminのpng圧縮率が低いため追加
-const pngquant = require("imagemin-pngquant");
+const pngquant = require('imagemin-pngquant');
 // gulp-webp - webp画像の圧縮
-const webp = require("gulp-webp");
+const webp = require('gulp-webp');
 
 /* ----------------------------
  * package - その他
  * ---------------------------- */
 // gulp-notify - gulpのタスクでエラーが起きた時にデスクトップ通知を行う
-const notify = require("gulp-notify");
+const notify = require('gulp-notify');
 // gulp-plumber - notifyでエラーが起きた時に処理を継続する
-const plumber = require("gulp-plumber");
+const plumber = require('gulp-plumber');
 // del - フォルダやファイルの削除をする
-const del = require("del");
+const del = require('del');
 // gulp-rename - ファイルのリネーム
-const rename = require("gulp-rename");
+const rename = require('gulp-rename');
 // browser-sync - ローカルサーバー立ち上げとホットリロード
-const browserSync = require("browser-sync");
+const browserSync = require('browser-sync');
 // path - nodeのpathを使えるようにする
-const path = require("path");
-const fs = require("fs");
+const path = require('path');
+const fs = require('fs');
+const { groupCollapsed } = require('console');
 
 /* ----------------------------
  * 各パス情報のソース
  * ---------------------------- */
 const paths = {
   root: {
-    dist: "../dist/",
+    dist: '../dist/',
   },
   ejs: {
-    src: "./ejs/**/*.ejs",
-    ignore: "!./ejs/**/_*.ejs",
-    dist: "../dist/",
+    src: './ejs/**/*.ejs',
+    ignore: '!./ejs/**/_*.ejs',
+    dist: '../dist/',
   },
   css: {
-    src: "./assets/css/**/*.css",
-    dist: "../dist/assets/css/",
+    src: './assets/css/**/*.css',
+    dist: '../dist/assets/css/',
     copy: {
-      src: "./assets/css/libs/*.css",
-      dist: "../dist/assets/css/libs/",
+      src: './assets/css/libs/*.css',
+      dist: '../dist/assets/css/libs/',
     },
   },
   scss: {
-    src: "./assets/scss/**/*.scss",
-    dist: "../dist/assets/css/",
-    include: [path.resolve(__dirname, "scss")],
+    src: './assets/scss/**/*.scss',
+    dist: '../dist/assets/css/',
+    include: [path.resolve(__dirname, 'scss')],
   },
   js: {
-    src: "./assets/js/**/*.js",
-    dist: "../dist/assets/js/",
-    ignore: "!./assets/js/libs/**.js",
+    src: './assets/js/**/*.js',
+    dist: '../dist/assets/js/',
+    ignore: '!./assets/js/libs/**.js',
     copy: {
-      src: "./assets/js/libs/**.js",
-      dist: "../dist/assets/js/libs/",
+      src: './assets/js/libs/**.js',
+      dist: '../dist/assets/js/libs/',
     },
   },
   images: {
-    src: "./assets/images/**/*",
-    dist: "../dist/assets/images/",
+    src: './assets/images/**/*',
+    dist: '../dist/assets/images/',
   },
   clean: {
-    all: "../dist/",
-    images: "../dist/assets/images/",
+    all: '../dist/',
+    images: '../dist/assets/images/',
   },
 };
 
@@ -122,19 +123,19 @@ const paths = {
  * gulpタスク - EJSのコンパイル
  * ---------------------------- */
 const compileEjs = done => {
-  const json = JSON.parse(fs.readFileSync("./ejs/data/page-data.json", "utf-8"));
+  const json = JSON.parse(fs.readFileSync('./ejs/data/page-data.json', 'utf-8'));
   gulp
     .src([paths.ejs.src, paths.ejs.ignore])
     .pipe(
       plumber({
         errorHandler: notify.onError({
-          title: "EJSコンパイルエラー",
-          message: "Error: <%= error.message %>",
+          title: 'EJSコンパイルエラー',
+          message: 'Error: <%= error.message %>',
         }),
       })
     )
     .pipe(ejs({ jsonData: json })) //jsonデータの受け渡し
-    .pipe(rename({ extname: ".html" }))
+    .pipe(rename({ extname: '.html' }))
     .pipe(
       htmlmin({
         collapseWhitespace: true, // 余白を除去する
@@ -144,7 +145,7 @@ const compileEjs = done => {
     .pipe(
       htmlbeautify({
         indent_size: 2,
-        indent_char: "\t",
+        indent_char: '\t',
         preserve_newlines: false,
       })
     )
@@ -161,15 +162,16 @@ const compileSass = done => {
     .pipe(
       plumber({
         errorHandler: notify.onError({
-          title: "Scssコンパイルエラー",
-          message: "Error: <%= error.message %>",
+          title: 'Scssコンパイルエラー',
+          message: 'Error: <%= error.message %>',
         }),
       })
     )
     .pipe(sassGlob())
-    .pipe(sass({ includePaths: ["node_modules", "assets/scss"] }))
-    .pipe(postcss([autoprefixer(), mqpacker(), cssSorter()]))
-    .pipe(mode.development(gulp.dest(paths.scss.dist, { sourcemaps: "./sourcemaps" })))
+    .pipe(sass({ includePaths: ['node_modules', 'assets/scss'] }))
+    .pipe(groupmq())
+    .pipe(postcss([autoprefixer(), cssSorter()]))
+    .pipe(mode.development(gulp.dest(paths.scss.dist, { sourcemaps: './sourcemaps' })))
     .pipe(mode.production(cleanCss())) //本番環境圧縮なしの場合は、コメントアウト
     .pipe(mode.production(gulp.dest(paths.scss.dist)));
   done();
@@ -209,25 +211,25 @@ const compileJs = done => {
     .pipe(
       plumber({
         errorHandler: notify.onError({
-          title: "JSコンパイルエラー",
-          message: "Error: <%= error.message %>",
+          title: 'JSコンパイルエラー',
+          message: 'Error: <%= error.message %>',
         }),
       })
     )
     .pipe(
       rollup({
-        input: "./assets/js/main.js",
-        format: "esm",
-        moduleName: "sample_module",
+        input: './assets/js/main.js',
+        format: 'esm',
+        moduleName: 'sample_module',
       })
     )
     .pipe(
       gulpBabel({
-        presets: ["@babel/preset-env"],
+        presets: ['@babel/preset-env'],
       })
     )
     .pipe(mode.production(uglify())) //本番環境圧縮なしの場合は、コメントアウト
-    .pipe(mode.development(gulp.dest(paths.js.dist, { sourcemaps: "./sourcemaps" })))
+    .pipe(mode.development(gulp.dest(paths.js.dist, { sourcemaps: './sourcemaps' })))
     .pipe(mode.production(gulp.dest(paths.js.dist)));
   done();
 };
@@ -243,8 +245,8 @@ const minImages = done => {
     .pipe(
       plumber({
         errorHandler: notify.onError({
-          title: "Imageコンパイルエラー",
-          message: "Error: <%= error.message %>",
+          title: 'Imageコンパイルエラー',
+          message: 'Error: <%= error.message %>',
         }),
       })
     )

@@ -1,0 +1,76 @@
+@use "global/" as *;
+//* hidden
+.u-xs-hidden {
+  display: initial;
+  @include mq("xs") {
+    display: block;
+  }
+}
+.u-sm-hidden {
+  display: initial;
+  @include mq("sm") {
+    display: block;
+  }
+}
+.u-md-hidden {
+  display: initial;
+  @include mq("md") {
+    display: block;
+  }
+}
+.u-lg-hidden {
+  display: initial;
+  @include mq("lg") {
+    display: block;
+  }
+}
+.u-xl-hidden {
+  display: initial;
+  @include mq("xl") {
+    display: block;
+  }
+}
+.u-xxl-hidden {
+  display: initial;
+  @include mq("xxl") {
+    display: block;
+  }
+}
+
+//* show
+.u-xs-show {
+  display: none;
+  @include mq("xs") {
+    display: initial;
+  }
+}
+.u-sm-show {
+  display: none;
+  @include mq("sm") {
+    display: initial;
+  }
+}
+.u-md-show {
+  display: none;
+  @include mq("md") {
+    display: initial;
+  }
+}
+.u-lg-show {
+  display: none;
+  @include mq("lg") {
+    display: initial;
+  }
+}
+.u-xl-show {
+  display: none;
+  @include mq("xl") {
+    display: initial;
+  }
+}
+.u-xxl-show {
+  display: none;
+  @include mq("xxl") {
+    display: initial;
+  }
+}
